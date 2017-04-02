@@ -22,6 +22,16 @@
           <include refid="documentColumn"/>
         FROM document d WHERE d.d_id = #{id}
     </select>
+    <insert id="inputDocument">
+        INSERT
+        INTO document (d_content,d_type,create_time,hits)
+        VALUES (#{document.content},#{document.type},#{document.createTime},#{document.hits})
+    </insert>
+    <select id="getDocumentContent" resultType="com.shu.dao.entity.Document">
+        SELECT
+        <include refid="documentColumn"/>
+        d.d_id FROM document d
+    </select>
     
     <update id="updateDocument">
         UPDATE document SET
