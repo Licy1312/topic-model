@@ -3,6 +3,8 @@ package com.shu.dao.facade;
 import com.shu.dao.entity.Document;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
         * Description：操作数据库中的Document的所有接口，方法
         * User:Lichangya
@@ -30,5 +32,7 @@ public interface IDocumentDao {
      * 获取所有文档内容
      * @return
      */
-    Document getDocumentContent();
+     List<Document> getDocumentContent();
+
+     List<Document> getContent();
 }

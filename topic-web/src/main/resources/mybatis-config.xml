@@ -12,4 +12,12 @@
         <!--是否开启自动驼峰命名规则（camel case）映射-->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
+    <!--<typeAliases>-->
+        <!--<typeAlias alias="document" type="com.shu.dao.entity.Document">-->
+    <!--</typeAliases>-->
+    <!--<mappers>-->
+        <!--<mapper resource="com/shu/dao/resources/DocumentDao.xml"/>-->
+    <!--</mappers>-->
+
+
 </configuration>

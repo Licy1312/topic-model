@@ -67,4 +67,9 @@
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
 
+   <!--<bean id="docMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+       <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
+       <!--<property name="mapperInterface" value="com.shu.dao.facade.IDocumentDao" />-->
+   <!--</bean>-->
+
 </beans>
