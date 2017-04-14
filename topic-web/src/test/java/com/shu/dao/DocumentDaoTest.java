@@ -26,7 +26,7 @@ public class DocumentDaoTest {
      */
     @Test
     public void testGetDocumentById(){
-        int id = 1;
+        int id = 102;
         Document document = documentDao.getDocumentById(id);
         log.info("文档对象的内容是:{}",document);
     }

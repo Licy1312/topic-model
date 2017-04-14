@@ -18,6 +18,7 @@ public class ResultDto<T> {
     private String desc;
     private T result;
 
+
     /**
      * 默认成功的构造函数
      */

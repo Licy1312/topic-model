@@ -66,10 +66,7 @@
     <!--配置基于注解的声明式事务，默认使用注解来管理事务的行为-->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
+    <bean id="luceneAnalyzer" class="com.shu.analyzer.Lucene">
 
-   <!--<bean id="docMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
-       <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
-       <!--<property name="mapperInterface" value="com.shu.dao.facade.IDocumentDao" />-->
-   <!--</bean>-->
-
+    </bean>
 </beans>

@@ -24,7 +24,14 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+
     <!--4.扫描web(controller 控制器)相关的包-->
     <context:component-scan base-package="com.shu.web.controller"/>
+
+    <!--5.配置html静态文件-->
+    <mvc:resources location="/WEB-INF/html/" mapping="/html/*.html"/>
+    <mvc:resources location="/WEB-INF/html/css/" mapping="/html/css/**"/>
+    <mvc:resources location="/WEB-INF/html/images/" mapping="/html/images/**"/>
+    <mvc:resources location="/WEB-INF/html/js/" mapping="/html/js/*.js"/>
 
 </beans>

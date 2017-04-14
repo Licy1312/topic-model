@@ -32,7 +32,6 @@ public interface IDocumentDao {
      * 获取所有文档内容
      * @return
      */
-     List<Document> getDocumentContent();
 
      List<Document> getContent();
 }

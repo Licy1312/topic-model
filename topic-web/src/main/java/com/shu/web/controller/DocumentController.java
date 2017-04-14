@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 /**
  * Description：文档控制器类
  * User:Lichangya
@@ -40,6 +42,7 @@ public class DocumentController {
         }catch (Exception e){
             resultDto = ResultDto.getReturn(Contains.DEFECT_CODE,e.getMessage());
         }
+
         return resultDto;
     }
 
