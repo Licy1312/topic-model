@@ -1,0 +1,115 @@
+@charset "utf-8";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+ul li{
+    list-style: none;
+}
+
+.newsList li{
+    height: 50px;
+    width: 100%;
+    background: #fff;
+    margin-bottom: 10px;
+    -webkit-box-shadow: 0 2px 4px #ccc;
+    -moz-box-shadow: 0 2px 4px #ccc;
+    box-shadow: 0 2px 4px #ccc;
+    position: relative;
+}
+.newsList li:hover{
+    transform: translateX(-10px);
+    background: #fdfdfd;
+}
+.newsList li a{
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    color: #888;
+    font-size: 16px;
+    line-height: 50px;
+    padding-left: 20px;
+    padding-right: 180px;
+    cursor: pointer;
+}
+.newsList li a p{
+    padding: 0;
+    color: #888;
+    text-shadow: none;
+    font-size: 16px;
+    line-height: 50px;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+.newsList li a span{
+    position: absolute;
+    right: 20px;
+    top: 0;
+}
+.m-pagination-page{
+    margin-bottom: 10px;
+}
+.newsDetail button{
+    border: none;
+    background: transparent;
+    color: #2592df;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 4px;
+    outline: medium;
+}
+.newsDetail h2{
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+    color: #222;
+}
+.newsDetail h4{
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+    color: #888;
+    margin: 10px 0;
+}
+.newsDetail p{
+    font-size: 16px;
+    color: #333;
+    padding: 0;
+}
+.searchBar{
+    width: 90%;
+    max-width: 960px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 10px;
+    margin-bottom: 20px;
+}
+.searchBox input,.searchBox button{
+    height: 50px;
+    line-height: 50px;
+    border: none;
+    font-size: 16px;
+    color: #888;
+    background: #fff;
+    outline: medium;
+    -webkit-box-shadow: 0 2px 4px #ccc;
+    -moz-box-shadow: 0 2px 4px #ccc;
+    box-shadow: 0 2px 4px #ccc;
+    cursor: pointer;
+    padding: 0 10px;
+}
+.searchBox input:focus,.searchBox button:hover{
+    -webkit-box-shadow: 0 2px 8px #bbb;
+    -moz-box-shadow: 0 2px 8px #bbb;
+    box-shadow: 0 2px 8px #bbb;
+}
+.searchBox input{
+    width: 400px;
+}
+.searchBox button{
+    padding: 0 20px;
+}

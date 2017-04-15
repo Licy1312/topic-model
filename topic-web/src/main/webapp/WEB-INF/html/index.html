@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Simple Effects for Drop-Down Lists</title>
+		<meta name="description" content="Simple Effects for Drop-Down Lists" />
+		<meta name="keywords" content="drop-down, select, jquery, plugin, fallback, transition, transform, 3d, css3" />
+		<meta name="author" content="Codrops" />
+		<link rel="stylesheet" type="text/css" href="css/style1.css" />
+		<link rel="stylesheet" href="css/index.css"/>
+		<link rel="stylesheet" href="css/jquery.pagination.css"/>
+		<script src="js/jquery.js"></script>
+		<script src="js/angular.js"></script>
+		<script src="js/index.js"></script>
+		<script src="js/jquery.pagination-1.2.1.js"></script>
+	</head>
+	<body ng-app="newsApp">
+		<div class="container" ng-controller="mainCtrl">
+			<header class="clearfix">
+				<h1>老王的课程设计<span>王一腾,xxx</span></h1>
+			</header>
+			<div class="searchBar">
+				<div class="searchBox">
+					<input type="text" ng-model="keyWord"/>
+					<button ng-click="doSearch()">搜索</button>
+				</div>
+			</div>
+			<section class="main clearfix">
+				<div class="fleft" ng-show="showList">
+					<ul class="newsList">
+						<li ng-repeat="news in dataNow">
+							<a data-newsid="{{news.result.id}}" title="{{news.result.title}}" ng-click="showDetail($event)">
+								<p data-newsid="{{news.result.id}}">{{news.result.title}}</p><span data-newsid="{{news.result.id}}">{{news.result.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+							</a>
+						</li>
+					</ul>
+					<div id="pageBox"></div>
+				</div>
+				<div class="fleft newsDetail" ng-show="!showList">
+					<button ng-click="backToList()">&laquo;返回列表</button>
+					<h2>{{targetNews.title}}</h2>
+					<h4>{{targetNews.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</h4>
+					<p>{{targetNews.content}}</p>
+				</div>
+			</section>
+		</div>
+	</body>
+</html>
+
