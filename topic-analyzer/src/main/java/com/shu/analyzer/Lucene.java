@@ -16,6 +16,7 @@ import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.store.RAMDirectory;
@@ -27,9 +28,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.regex.Pattern;
 
 /**
  * Description：lucene+word分词器进行分词和查找
@@ -48,6 +48,8 @@ public class Lucene {
     public void luceneAnalyzer(com.shu.dao.entity.Document document) throws IOException, TikaException {
 //        File root = new File("D:/java/bs");
 //        File[] fs = root.listFiles();
+//        System.out.println("+++++++++++++++++++++++++++++++++++");
+        String  id = String.valueOf(document.getId());
         String filename = document.getTitle();
         String content = document.getContent();
 //        IndexUtil iu = new IndexUtil();
@@ -75,6 +77,7 @@ public class Lucene {
             IndexWriterConfig config = new IndexWriterConfig(analyzer);
             IndexWriter iwriter = new IndexWriter(directory, config);
             Document doc = new Document();
+            doc.add(new Field("id",id,TextField.TYPE_STORED));
             doc.add(new Field("filename",filename,TextField.TYPE_STORED));
             for (String text : result) {
                 System.out.println(text);
@@ -88,24 +91,33 @@ public class Lucene {
     }
 
     //进行查找
-    public void luceneSearch(String text) throws IOException, ParseException {
+    public ArrayList luceneSearch(String text) throws IOException, ParseException {
+        ArrayList<String> allId = new ArrayList<String>();
         directory = FSDirectory.open(Paths.get(INDEX_FILE));
+
+
         DirectoryReader ireader = DirectoryReader.open(directory);
         IndexSearcher isearcher = new IndexSearcher(ireader);
         analyzer = new ChineseWordAnalyzer();
         //查找
         QueryParser parser = new QueryParser("text", analyzer);
 	    Query query = parser.parse(text);
-	    ScoreDoc[] hits = isearcher.search(query, null, 1000).scoreDocs;
+        TopDocs topDocs = isearcher.search(query,1000000);
+	    ScoreDoc[] hits = topDocs.scoreDocs;
+//        System.out.println("共检索出 " + hits.length+ " 条记录");
         //迭代输出结果
 	    for (int i = 0; i < hits.length; i++) {
 	        Document hitDoc = isearcher.doc(hits[i].doc);
-	        System.out.println(hitDoc.get("filename"));
+	        String id = hitDoc.get("id");
+	        if(id != null){
+	            allId.add(id);
+            }
 	    }
 	    ireader.close();
 	    directory.close();
+        LinkedHashSet<String> set = new LinkedHashSet<String>(allId);
+        ArrayList<String> res = new ArrayList<String>(set);
 
-
+         return res;
     }
-
 }

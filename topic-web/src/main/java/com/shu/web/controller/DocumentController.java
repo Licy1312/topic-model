@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.List;
  */
 @Slf4j
 @Controller
-@RequestMapping("/main")
+//@RequestMapping("/main")
 public class DocumentController {
     @Autowired
     private IDocumentService documentService;
@@ -31,10 +32,9 @@ public class DocumentController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/{id}")
+    @RequestMapping(value = "/main/{id}")
     @ResponseBody
     public ResultDto<Document> getDocumentById(@PathVariable("id") int id){
-
         ResultDto<Document>  resultDto = new ResultDto<Document>();
         try{
             Document document = documentService.getDocumentById(id);
@@ -45,5 +45,19 @@ public class DocumentController {
 
         return resultDto;
     }
+//    @RequestMapping(method = RequestMethod.GET)
+//@RequestMapping(value = "/main")
+//@ResponseBody
+//    public ResultDto<Document> getDocument(){
+//        ResultDto<Document>  resultDto = new ResultDto<Document>();
+//        try{
+//            Document document = documentService.getDocumentById(50);
+//            resultDto.setResult(document);
+//        }catch (Exception e){
+//            resultDto = ResultDto.getReturn(Contains.DEFECT_CODE,e.getMessage());
+//        }
+//
+//        return resultDto;
+//    }
 
 }

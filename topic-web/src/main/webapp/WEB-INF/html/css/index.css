@@ -7,6 +7,9 @@
 ul li{
     list-style: none;
 }
+body{
+    font-family: "微软雅黑";!important;
+}
 
 .newsList li{
     height: 50px;
@@ -75,10 +78,11 @@ ul li{
     color: #888;
     margin: 10px 0;
 }
-.newsDetail p{
+.newsDetail pre{
     font-size: 16px;
     color: #333;
     padding: 0;
+    font-family: "微软雅黑";
 }
 .searchBar{
     width: 90%;

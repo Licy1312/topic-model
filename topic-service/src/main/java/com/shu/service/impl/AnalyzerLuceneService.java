@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by pc on 2017/4/11.
@@ -21,25 +22,30 @@ import java.util.concurrent.Executors;
 
 public class AnalyzerLuceneService implements IAnalyzerLuceneService{
     @Autowired
-    private DocumentService documentDao;
+     private DocumentGetService documentGetService;
+
 //    int id1 = 57;
     Document document = new Document();
-//    int id2 = 88,id3=94,id4=105,id5= 189;
-//    Document document2 = documentDao.getDocumentById(id2);
-//    Document document3 = documentDao.getDocumentById(id3);
-//    Document document4 = documentDao.getDocumentById(id4);
-//    Document document5 = documentDao.getDocumentById(id5);
+    Lucene lucene = new Lucene();
+
 
     @Override
     public void luceneToken(){
         ExecutorService pool = Executors.newFixedThreadPool(1000);
-        for(int i=1;i<=5;i++){
-            document = documentDao.getDocumentById(i*100+2);
+        List<Document> documents = documentGetService.getContent();
+        for(int i=0;i<documents.size();i++){
+            document = documents.get(i);
             AnalyzerRunable analyzerRunable = new AnalyzerRunable();
             analyzerRunable.setDoc(document);
+            analyzerRunable.setLucene(lucene);
             pool.submit(analyzerRunable);
         }
         pool.shutdown();
+        try {//等待直到所有任务完成
+            pool.awaitTermination(Long.MAX_VALUE, TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
 class AnalyzerRunable implements Runnable{
@@ -51,6 +57,9 @@ class AnalyzerRunable implements Runnable{
         this.document = document;
 
     }
+    public void setLucene(Lucene lucene){
+        this.lucene = lucene;
+    }
     @Override
     public void run(){
         try {
@@ -61,5 +70,6 @@ class AnalyzerRunable implements Runnable{
             e.printStackTrace();
         }
 
+//        System.out.println(Thread.currentThread().getName() + ":" );
     }
 }

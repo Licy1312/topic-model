@@ -3,6 +3,8 @@ package com.shu.analyzer;
 import com.shu.dao.entity.Document;
 import com.shu.dao.facade.IDocumentDao;
 import com.shu.service.facade.IDocumentService;
+import com.shu.service.impl.DocumentGetService;
+import com.shu.web.utils.ResultDto;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.tika.exception.TikaException;
@@ -13,6 +15,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -28,24 +32,25 @@ public class LuceneTest {
     @Autowired
     private IDocumentDao documentDao;
     private Document document;
+    private DocumentGetService documentGetService;
     /**
      * 创建并保存索引
      *
      */
     @Test
     public void LuceneIndexTest() throws IOException, TikaException {
-//        int id = 102;
-//        Document document = documentDao.getDocumentById(id);
-//        Lucene lucene = new Lucene();
-//        lucene.luceneAnalyzer(document);
-        ExecutorService pool = Executors.newFixedThreadPool(1000);
-        for(int i=1;i<=5;i++){
-            document = documentDao.getDocumentById(i*100+2);
-            AnalyzerRunable analyzerRunable = new AnalyzerRunable();
-            analyzerRunable.setDoc(document);
-            pool.submit(analyzerRunable);
+        List<Document> documents = documentDao.getContent();
+        for(int i=0;i<documents.size();i++){
+            document = documents.get(i);
+            Lucene lucene = new Lucene();
+            lucene.luceneAnalyzer(document);
         }
-        pool.shutdown();
+//       for(int i=46;i<51;i++){
+//           document = documentDao.getDocumentById(i);
+//           Lucene lucene = new Lucene();
+//            lucene.luceneAnalyzer(document);
+//       }
+
     }
     /**
      * 查询
@@ -54,27 +59,11 @@ public class LuceneTest {
     @Test
     public void LuceneSearchTest() throws IOException, ParseException {
         Lucene lucene = new Lucene();
-        lucene.luceneSearch("制造业");
-    }
-}
-class AnalyzerRunable implements Runnable{
-    @Autowired
-    private Document document;
-    private Lucene lucene;
+        ArrayList<String> res =lucene.luceneSearch("上海");
 
-    public void setDoc(Document document){
-        this.document = document;
-
-    }
-    @Override
-    public void run(){
-        try {
-            lucene.luceneAnalyzer(document);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (TikaException e) {
-            e.printStackTrace();
-        }
-
+        System.out.println("结果是："+res.size());
+//        for(int i=0;i<res.size();i++){
+//            System.out.println(res.get(i));
+//        }
     }
 }
