@@ -1,6 +1,6 @@
 package com.shu.analyzer.facade;
 
-import com.shu.dao.entity.Document;
+import com.shu.dao.entity.DocumentDO;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public interface IDocumentDeal {
      * @param keywords
      * @return
      */
-    List<Document> searchIndexByKeyWords(String keywords);
+    List<DocumentDO> searchIndexByKeyWords(String keywords);
 
     /**
      * 所有文档基本信息入库（标题、内容）

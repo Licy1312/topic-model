@@ -1,6 +1,6 @@
 package com.shu.sort.impl;
 
-import com.shu.dao.entity.Document;
+import com.shu.dao.entity.DocumentDO;
 import com.shu.sort.model.Term;
 import com.shu.sort.relative.ICommonTextSimilar;
 import java.math.BigDecimal;
@@ -54,7 +54,7 @@ public class VSMTextSimilarImpl implements ICommonTextSimilar {
      * @param baseWords 词典
      * @param doc
      */
-    public void getDocVector(Vector<String> baseWords, Document doc){
+    public void getDocVector(Vector<String> baseWords, DocumentDO doc){
         Term[] terms = new Term[baseWords.size()];
         for(int i=0;i<baseWords.size();i++){
             String word = baseWords.get(i);
@@ -73,7 +73,7 @@ public class VSMTextSimilarImpl implements ICommonTextSimilar {
         docMap.put(doc.getId(),terms);
     }
 
-    public void calculateDocVector(Document doc){
+    public void calculateDocVector(DocumentDO doc){
         Term[] terms = docMap.get(doc.getId());
         double vector[] = new double[terms.length];
         for(int i=0;i<terms.length;i++){

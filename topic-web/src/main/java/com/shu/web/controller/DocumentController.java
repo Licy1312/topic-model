@@ -1,6 +1,6 @@
 package com.shu.web.controller;
 
-import com.shu.dao.entity.Document;
+import com.shu.dao.entity.DocumentDO;
 import com.shu.service.facade.IDocumentService;
 import com.shu.web.utils.Contains;
 import com.shu.web.utils.ResultDto;
@@ -31,12 +31,12 @@ public class DocumentController {
      */
     @RequestMapping(value = "/{id}")
     @ResponseBody
-    public ResultDto<Document> getDocumentById(@PathVariable("id") int id){
+    public ResultDto<DocumentDO> getDocumentById(@PathVariable("id") int id){
 
-        ResultDto<Document>  resultDto = new ResultDto<Document>();
+        ResultDto<DocumentDO>  resultDto = new ResultDto<DocumentDO>();
         try{
-            Document document = documentService.getDocumentById(id);
-            resultDto.setResult(document);
+            DocumentDO documentDO = documentService.getDocumentById(id);
+            resultDto.setResult(documentDO);
         }catch (Exception e){
             resultDto = ResultDto.getReturn(Contains.DEFECT_CODE,e.getMessage());
         }

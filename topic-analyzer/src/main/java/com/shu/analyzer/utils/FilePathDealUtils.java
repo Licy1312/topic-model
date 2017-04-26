@@ -7,18 +7,18 @@ import org.springframework.stereotype.Component;
 import javax.xml.ws.BindingType;
 
 /**
- * Description：
+ * Description：文件路径配置
  * User:Lichangya
  * Date:2017/4/1.
  */
-@Component
-@Getter
 @Setter
+@Getter
+@Component
 public class FilePathDealUtils {
     /**
      * 数据源路径
      */
-    private  String resourcePath;
+    public  String resourcePath;
 
     /**
      * 分词后路径
@@ -39,4 +39,5 @@ public class FilePathDealUtils {
      * 模型路径
      */
     private  String modelPath;
+
 }

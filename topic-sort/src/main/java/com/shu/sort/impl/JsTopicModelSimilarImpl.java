@@ -1,6 +1,5 @@
 package com.shu.sort.impl;
 
-import com.shu.dao.entity.Document;
 import com.shu.sort.relative.ICommonTextSimilar;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,6 @@
 package com.shu.dao.facade;
 
-import com.shu.dao.entity.Document;
+import com.shu.dao.entity.DocumentDO;
 
 /**
  * Description：操作数据库中的Document的所有接口，方法
@@ -13,11 +13,11 @@ public interface IDocumentDao {
      * @param id
      * @return
      */
-    Document getDocumentById(int id);
+    DocumentDO getDocumentById(int id);
 
     /**
      * 更新文档
-     * @param document
+     * @param documentDO
      */
-    void updateDocument(Document document);
+    void updateDocument(DocumentDO documentDO);
 }

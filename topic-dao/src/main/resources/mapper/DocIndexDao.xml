@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shu.dao.facade.IDocIndexDao">
+    <resultMap id="userResultMap" type="com.shu.dao.entity.DocIndex">
+        <id property="id" column="id"  />
+        <result property="docId" column="doc_id" />
+        <result property="docName" column="doc_name" />
+        <result property="docAnalyzer" column="doc_analyzer" />
+        <result property="createTime"  column="create_time" />
+    </resultMap>
+
+    <insert id="insertDocIndex">
+        INSERT
+        INTO doc_index (id,doc_id,doc_name,doc_analyzer)
+        VALUES (#{bean.id},#{bean.docId},#{bean.docName},#{bean.docAnalyzer})
+    </insert>
+</mapper>

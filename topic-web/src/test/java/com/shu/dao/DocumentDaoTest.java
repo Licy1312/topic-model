@@ -1,6 +1,6 @@
 package com.shu.dao;
 
-import com.shu.dao.entity.Document;
+import com.shu.dao.entity.DocumentDO;
 import com.shu.dao.facade.IDocumentDao;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -27,7 +27,7 @@ public class DocumentDaoTest {
     @Test
     public void testGetDocumentById(){
         int id = 1;
-        Document document = documentDao.getDocumentById(id);
-        log.info("文档对象的内容是:{}",document);
+        DocumentDO documentDO = documentDao.getDocumentById(id);
+        log.info("文档对象的内容是:{}", documentDO);
     }
 }

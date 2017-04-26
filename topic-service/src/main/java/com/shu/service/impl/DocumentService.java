@@ -1,6 +1,6 @@
 package com.shu.service.impl;
 
-import com.shu.dao.entity.Document;
+import com.shu.dao.entity.DocumentDO;
 import com.shu.dao.facade.IDocumentDao;
 import com.shu.service.enums.ExceptionEnum;
 import com.shu.service.exceptions.DocumentException;
@@ -8,8 +8,6 @@ import com.shu.service.facade.IDocumentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.print.Doc;
 
 /**
  * Description：
@@ -29,10 +27,10 @@ public class DocumentService implements IDocumentService {
      * @return
      */
     @Override
-    public Document getDocumentById(int id) {
-        Document document = documentDao.getDocumentById(id);
-        if(document != null){
-            return document;
+    public DocumentDO getDocumentById(int id) {
+        DocumentDO documentDO = documentDao.getDocumentById(id);
+        if(documentDO != null){
+            return documentDO;
         }else{
          throw  new DocumentException(ExceptionEnum.DOCUMENT_NULL.getDesc());
         }
