@@ -45,7 +45,7 @@ public class Lucene {
     private Directory directory;
 
     //用于提取文件名和文件内容 进行分词
-    public void luceneAnalyzer(com.shu.dao.entity.Document document) throws IOException, TikaException {
+    public Document luceneAnalyzer(com.shu.dao.entity.Document document) throws IOException, TikaException {
 //        File root = new File("D:/java/bs");
 //        File[] fs = root.listFiles();
 //        System.out.println("+++++++++++++++++++++++++++++++++++");
@@ -73,21 +73,33 @@ public class Lucene {
             //消费完毕
             tokenStream.close();
 
-            directory = FSDirectory.open(Paths.get(INDEX_FILE));
-            IndexWriterConfig config = new IndexWriterConfig(analyzer);
-            IndexWriter iwriter = new IndexWriter(directory, config);
+
+
+
             Document doc = new Document();
             doc.add(new Field("id",id,TextField.TYPE_STORED));
             doc.add(new Field("filename",filename,TextField.TYPE_STORED));
             for (String text : result) {
-                System.out.println(text);
+//                System.out.println(text);
                 doc.add(new Field("text", text, TextField.TYPE_STORED));
-                iwriter.addDocument(doc);
+
             }
-            iwriter.close();
 
-            directory.close();
+           return doc;
 
+
+    }
+     //indexwriter 写入索引
+    public  void indexWrite(ArrayList<Document> docs) throws IOException {
+        directory = FSDirectory.open(Paths.get(INDEX_FILE));
+        IndexWriterConfig config = new IndexWriterConfig(analyzer);
+        IndexWriter iwriter = new IndexWriter(directory, config);
+        for(Document doc:docs) {
+            iwriter.addDocument(doc);
+        }
+        iwriter.commit();
+        iwriter.close();
+        directory.close();
     }
 
     //进行查找
@@ -119,5 +131,6 @@ public class Lucene {
         ArrayList<String> res = new ArrayList<String>(set);
 
          return res;
+//        return allId;
     }
 }

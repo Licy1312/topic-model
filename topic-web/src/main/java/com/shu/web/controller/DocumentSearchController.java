@@ -50,9 +50,7 @@ public class DocumentSearchController {
 
 
         DocumentService documentService = new DocumentService();
-        ArrayList<String> res = new ArrayList<String>();
-
-        res = analyzerSearchService.luceneSearch(str);
+        ArrayList<String> res = analyzerSearchService.luceneSearch(str);
 
         for(int i=0;i<res.size();i++){
             ResultDto<Document>  resultDto = new ResultDto<Document>();

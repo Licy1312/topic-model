@@ -39,17 +39,21 @@ public class LuceneTest {
      */
     @Test
     public void LuceneIndexTest() throws IOException, TikaException {
-        List<Document> documents = documentDao.getContent();
-        for(int i=0;i<documents.size();i++){
-            document = documents.get(i);
-            Lucene lucene = new Lucene();
-            lucene.luceneAnalyzer(document);
-        }
-//       for(int i=46;i<51;i++){
-//           document = documentDao.getDocumentById(i);
-//           Lucene lucene = new Lucene();
+//        List<Document> documents = documentDao.getContent();
+//        for(int i=0;i<documents.size();i++){
+//            document = documents.get(i);
+//            Lucene lucene = new Lucene();
 //            lucene.luceneAnalyzer(document);
-//       }
+//        }
+
+        ArrayList<org.apache.lucene.document.Document> docs = new ArrayList<org.apache.lucene.document.Document>();
+        org.apache.lucene.document.Document doc = new org.apache.lucene.document.Document();
+       for(int i=1050;i<1052;i++){
+           document = documentDao.getDocumentById(i);
+           Lucene lucene = new Lucene();
+            doc = lucene.luceneAnalyzer(document);
+           docs.add(doc);
+       }
 
     }
     /**
@@ -62,8 +66,8 @@ public class LuceneTest {
         ArrayList<String> res =lucene.luceneSearch("上海");
 
         System.out.println("结果是："+res.size());
-//        for(int i=0;i<res.size();i++){
-//            System.out.println(res.get(i));
-//        }
+        for(int i=0;i<10;i++){
+            System.out.println(res.get(i));
+        }
     }
 }

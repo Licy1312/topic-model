@@ -9,5 +9,5 @@ public interface IAnalyzerLuceneService {
     /**
      * 使用lucene进行分词
      */
-    void luceneToken();
+    void luceneToken() throws InterruptedException;
 }

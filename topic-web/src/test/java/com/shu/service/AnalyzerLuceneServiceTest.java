@@ -25,7 +25,7 @@ public class AnalyzerLuceneServiceTest {
      * 使用lucene进行的方法
      */
     @Test
-    public void analyzerLuceneTest(){
+    public void analyzerLuceneTest() throws InterruptedException {
         analyzerLuceneService.luceneToken();
     }
 }
