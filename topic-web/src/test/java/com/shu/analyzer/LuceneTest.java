@@ -1,10 +1,8 @@
 package com.shu.analyzer;
 
-import com.shu.dao.entity.Document;
+import com.shu.dao.entity.DocumentDO;
 import com.shu.dao.facade.IDocumentDao;
-import com.shu.service.facade.IDocumentService;
 import com.shu.service.impl.DocumentGetService;
-import com.shu.web.utils.ResultDto;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.tika.exception.TikaException;
@@ -16,9 +14,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Description：Lucene的测试类
@@ -31,7 +26,7 @@ import java.util.concurrent.Executors;
 public class LuceneTest {
     @Autowired
     private IDocumentDao documentDao;
-    private Document document;
+    private DocumentDO documentDO;
     private DocumentGetService documentGetService;
     /**
      * 创建并保存索引
@@ -39,19 +34,19 @@ public class LuceneTest {
      */
     @Test
     public void LuceneIndexTest() throws IOException, TikaException {
-//        List<Document> documents = documentDao.getContent();
+//        List<DocumentDO> documents = documentDao.getContent();
 //        for(int i=0;i<documents.size();i++){
-//            document = documents.get(i);
+//            documentDO = documents.get(i);
 //            Lucene lucene = new Lucene();
-//            lucene.luceneAnalyzer(document);
+//            lucene.luceneAnalyzer(documentDO);
 //        }
 
         ArrayList<org.apache.lucene.document.Document> docs = new ArrayList<org.apache.lucene.document.Document>();
         org.apache.lucene.document.Document doc = new org.apache.lucene.document.Document();
        for(int i=1050;i<1052;i++){
-           document = documentDao.getDocumentById(i);
+           documentDO = documentDao.getDocumentById(i);
            Lucene lucene = new Lucene();
-            doc = lucene.luceneAnalyzer(document);
+            doc = lucene.luceneAnalyzer(documentDO);
            docs.add(doc);
        }
 

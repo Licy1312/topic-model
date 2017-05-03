@@ -1,6 +1,6 @@
 package com.shu.service;
 
-import com.shu.dao.entity.Document;
+import com.shu.dao.entity.DocumentDO;
 import com.shu.service.facade.IDocumentService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -28,8 +28,8 @@ public class DoucmentServiceTest {
     @Test
     public void testGetDocument(){
         int id = 1;
-        Document document = documentService.getDocumentById(id);
-        log.info("文档的的详细:{}",document);
+        DocumentDO documentDO = documentService.getDocumentById(id);
+        log.info("文档的的详细:{}", documentDO);
     }
 }
 

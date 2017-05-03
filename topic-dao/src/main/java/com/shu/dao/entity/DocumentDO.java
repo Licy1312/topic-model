@@ -14,7 +14,7 @@ import java.util.Date;
 @Setter
 @Getter
 @ToString
-public class Document{
+public class DocumentDO {
 
     /**
      * 文档编号

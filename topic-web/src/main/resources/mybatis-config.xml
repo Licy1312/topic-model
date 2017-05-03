@@ -13,7 +13,7 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
     <!--<typeAliases>-->
-        <!--<typeAlias alias="document" type="com.shu.dao.entity.Document">-->
+        <!--<typeAlias alias="documentDO" type="com.shu.dao.entity.DocumentDODO">-->
     <!--</typeAliases>-->
     <!--<mappers>-->
         <!--<mapper resource="com/shu/dao/resources/DocumentDao.xml"/>-->

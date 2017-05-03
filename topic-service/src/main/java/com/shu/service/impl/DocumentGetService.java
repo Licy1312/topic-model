@@ -1,6 +1,6 @@
 package com.shu.service.impl;
 
-import com.shu.dao.entity.Document;
+import com.shu.dao.entity.DocumentDO;
 import com.shu.dao.facade.IDocumentDao;
 import com.shu.service.facade.IDocumentGetService;
 import lombok.extern.slf4j.Slf4j;
@@ -24,8 +24,8 @@ public class DocumentGetService implements IDocumentGetService{
      * @return
      */
     @Override
-    public List<Document> getContent(){
-      List<Document> documents = documentDao.getContent();
-      return documents;
+    public List<DocumentDO> getContent(){
+      List<DocumentDO> documentDOs = documentDao.getContent();
+      return documentDOs;
     }
 }

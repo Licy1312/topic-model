@@ -16,63 +16,63 @@
         d.update_time AS "updateTime",
         d.hits AS "hits"
     </sql>
-    <resultMap id="document" type="com.shu.dao.entity.Document">
+    <resultMap id="documentDO" type="com.shu.dao.entity.DocumentDO">
         <result column="d_id" property="id"/>
         <result column="hits" property="hits"/>
 
     </resultMap>
 
-    <select id="getDocumentById" resultType="com.shu.dao.entity.Document">
+    <select id="getDocumentById" resultType="com.shu.dao.entity.DocumentDO">
         SELECT
           <include refid="documentColumn"/>
-        FROM document d WHERE d.d_id = #{id}
+        FROM documentDO d WHERE d.d_id = #{id}
     </select>
-    <select id="getContent" resultType="com.shu.dao.entity.Document">
+    <select id="getContent" resultType="com.shu.dao.entity.DocumentDO">
         SELECT
         <include refid="documentColumn"/>
 --         d.d_id
-        FROM document d
+        FROM documentDO d
     </select>
     <insert id="inputDocument">
         INSERT
-        INTO document (d_content,d_title,d_type,create_time,hits)
-        VALUES (#{document.content},#{document.title},#{document.type},#{document.createTime},#{document.hits})
+        INTO documentDO (d_content,d_title,d_type,create_time,hits)
+        VALUES (#{documentDO.content},#{documentDO.title},#{documentDO.type},#{documentDO.createTime},#{documentDO.hits})
     </insert>
-    <select id="getDocumentContent" resultMap="document">
-        SELECT
-        d_id,hits FROM document
-    </select>
+    <!--<select id="getDocumentContent" resultMap="documentDO">-->
+        <!--SELECT-->
+        <!--d_id,hits FROM documentDO-->
+    <!--</select>-->
     
     <update id="updateDocument">
-        UPDATE document SET
-        <if test="document.title !=null">
-            d.d_title = #{document.title}
+        UPDATE documentDO SET
+        <if test="documentDO.title !=null">
+            d.d_title = #{documentDO.title}
         </if>
-        <if test="document.title !=null">
-            d.d_abstract = #{document.dAbstract}
+        <if test="documentDO.title !=null">
+            d.d_abstract = #{documentDO.dAbstract}
         </if>
-        <if test="document.title !=null">
-            d.d_content = #{document.content}
+        <if test="documentDO.title !=null">
+            d.d_content = #{documentDO.content}
         </if>
-        <if test="document.title !=null">
-            d.d_keywords = #{document.keywords}
+        <if test="documentDO.title !=null">
+            d.d_keywords = #{documentDO.keywords}
         </if>
-        <if test="document.title !=null">
-            d.d_topics = #{document.topics}
+        <if test="documentDO.title !=null">
+            d.d_topics = #{documentDO.topics}
         </if>
-        <if test="document.title !=null">
-            d.d_path = #{document.path}
+        <if test="documentDO.title !=null">
+            d.d_path = #{documentDO.path}
         </if>
-        <if test="document.title !=null">
-            d.d_type = #{document.type}
+        <if test="documentDO.title !=null">
+            d.d_type = #{documentDO.type}
         </if>
-        <if test="document.title !=null">
-            d.create_time = #{document.createTime}
+        <if test="documentDO.title !=null">
+            d.create_time = #{documentDO.createTime}
         </if>
-        <if test="document.title !=null">
-            d.hits = #{document.hits}
+        <if test="documentDO.title !=null">
+            d.hits = #{documentDO.hits}
         </if>
-        WHERE d_id = #{document.id}
+        WHERE d_id = #{documentDO.id}
     </update>
 
 </mapper>

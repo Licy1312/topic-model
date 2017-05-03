@@ -1,7 +1,8 @@
 package com.shu.service.impl;
 
 import com.shu.analyzer.Lucene;
-import com.shu.dao.entity.Document;
+import com.shu.analyzer.service.IndexManager;
+import com.shu.analyzer.utils.IndexResult;
 import com.shu.service.facade.IAnalyzerSearchService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.lucene.queryparser.classic.ParseException;
@@ -20,6 +21,10 @@ import java.util.List;
 public class AnalyzerSearchService implements IAnalyzerSearchService{
     @Autowired
     Lucene lucene;
+
+    @Autowired
+    private IndexManager indexManager;
+
     /**
      * 获取所有文档内容
      * @return
@@ -36,4 +41,12 @@ public class AnalyzerSearchService implements IAnalyzerSearchService{
         }
         return res;
     }
+
+    @Override
+    public List<String> searchIndex(String str) {
+
+        List<String> indexResultList = indexManager.searchIndex("发展外向型经济");
+        return indexResultList;
+    }
+
 }

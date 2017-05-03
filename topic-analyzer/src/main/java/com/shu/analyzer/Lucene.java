@@ -1,6 +1,7 @@
 package com.shu.analyzer;
 
-import com.shu.dao.utils.IndexUtil;
+import com.shu.analyzer.utils.FilePathDealUtils;
+import com.shu.dao.entity.DocumentDO;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.lucene.analysis.TokenStream;
@@ -19,17 +20,14 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
-import org.apache.lucene.store.RAMDirectory;
 import org.apache.tika.exception.TikaException;
 import org.apdplat.word.lucene.ChineseWordAnalyzer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.regex.Pattern;
 
 /**
  * Description：lucene+word分词器进行分词和查找
@@ -40,18 +38,23 @@ import java.util.regex.Pattern;
 @Setter
 @Component
 public class Lucene {
-    private String INDEX_FILE="./tmp/testindex";
+    /**
+     * 文件路径工具类
+     */
+    @Autowired
+    private FilePathDealUtils filePathDealUtils;
+
     private ChineseWordAnalyzer analyzer;
     private Directory directory;
 
     //用于提取文件名和文件内容 进行分词
-    public Document luceneAnalyzer(com.shu.dao.entity.Document document) throws IOException, TikaException {
+    public Document luceneAnalyzer(DocumentDO documentDO) throws IOException, TikaException {
 //        File root = new File("D:/java/bs");
 //        File[] fs = root.listFiles();
 //        System.out.println("+++++++++++++++++++++++++++++++++++");
-        String  id = String.valueOf(document.getId());
-        String filename = document.getTitle();
-        String content = document.getContent();
+        String  id = String.valueOf(documentDO.getId());
+        String filename = documentDO.getTitle();
+        String content = documentDO.getContent();
 //        IndexUtil iu = new IndexUtil();
 //        for (int i = 0; i < fs.length; i++) {
 //             filename = fs[i].getName();
@@ -91,7 +94,7 @@ public class Lucene {
     }
      //indexwriter 写入索引
     public  void indexWrite(ArrayList<Document> docs) throws IOException {
-        directory = FSDirectory.open(Paths.get(INDEX_FILE));
+        directory = FSDirectory.open(Paths.get(filePathDealUtils.getIndexPath()));
         IndexWriterConfig config = new IndexWriterConfig(analyzer);
         IndexWriter iwriter = new IndexWriter(directory, config);
         for(Document doc:docs) {
@@ -105,7 +108,7 @@ public class Lucene {
     //进行查找
     public ArrayList luceneSearch(String text) throws IOException, ParseException {
         ArrayList<String> allId = new ArrayList<String>();
-        directory = FSDirectory.open(Paths.get(INDEX_FILE));
+        directory = FSDirectory.open(Paths.get(filePathDealUtils.getIndexPath()));
 
 
         DirectoryReader ireader = DirectoryReader.open(directory);

@@ -1,10 +1,8 @@
 package com.shu.service.impl;
 
-import com.shu.dao.entity.Document;
+import com.shu.dao.entity.DocumentDO;
 import com.shu.dao.facade.IDocumentDao;
 import com.shu.dao.utils.IndexUtil;
-import com.shu.service.enums.ExceptionEnum;
-import com.shu.service.exceptions.DocumentException;
 import com.shu.service.facade.IDocumentInputService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tika.exception.TikaException;
@@ -32,7 +30,7 @@ public class DocumentInputService implements IDocumentInputService{
      *
      */
     public void inputDocument(String path) {
-        Document doc = new Document();
+        DocumentDO doc = new DocumentDO();
         //使用tika提取pdf文本内容
         File root = new File(path);
         File[] fs = root.listFiles();

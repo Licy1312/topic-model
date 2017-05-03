@@ -1,6 +1,6 @@
 package com.shu.service.facade;
 
-import com.shu.dao.entity.Document;
+import com.shu.dao.entity.DocumentDO;
 
 import java.util.List;
 
@@ -14,5 +14,5 @@ public interface IDocumentGetService {
      * 获取所有文档内容
      * @return
      */
-    List<Document> getContent();
+    List<DocumentDO> getContent();
 }

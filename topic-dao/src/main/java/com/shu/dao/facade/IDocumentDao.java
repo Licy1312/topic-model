@@ -1,6 +1,6 @@
 package com.shu.dao.facade;
 
-import com.shu.dao.entity.Document;
+import com.shu.dao.entity.DocumentDO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -16,22 +16,22 @@ public interface IDocumentDao {
      * @param id
      * @return
      */
-    Document getDocumentById(int id);
+    DocumentDO getDocumentById(int id);
 
     /**
      * 更新文档
-     * @param document
+     * @param documentDO
      */
-    void updateDocument(Document document);
+    void updateDocument(DocumentDO documentDO);
     /**
      * 导入文档
-     * @param document
+     * @param documentDO
      */
-    void inputDocument(@Param("document")Document document);
+    void inputDocument(@Param("documentDO")DocumentDO documentDO);
     /**
      * 获取所有文档内容
      * @return
      */
 
-     List<Document> getContent();
+     List<DocumentDO> getContent();
 }

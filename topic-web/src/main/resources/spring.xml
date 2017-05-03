@@ -18,7 +18,7 @@
 
     <!--配置整合mybatis过程-->
     <!--1.引入数据库相关参数的文件-->
-    <context:property-placeholder location="classpath:jdbc.properties"/>
+    <context:property-placeholder location="classpath:common.properties"/>
 
     <!--2.配置数据库连接池-->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
@@ -66,5 +66,13 @@
     <!--配置基于注解的声明式事务，默认使用注解来管理事务的行为-->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
+    <!--文件的路径-->
+    <bean id="filePathDealUtils" class="com.shu.analyzer.utils.FilePathDealUtils">
+        <property name="resourcePath" value="${data.resource.path}"/>
+        <property name="analyzedPath" value="${data.analyzed.path}"/>
+        <property name="wordsPath" value="${data.words.path}"/>
+        <property name="indexPath" value="${data.index.path}"/>
+        <property name="modelPath" value="${data.topic.model}"/>
+    </bean>
 
 </beans>

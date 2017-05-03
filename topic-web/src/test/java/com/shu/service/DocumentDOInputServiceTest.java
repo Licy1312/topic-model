@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Created by pc on 2017/4/11.
  */
-public class DocumentInputServiceTest extends BaseTest {
+public class DocumentDOInputServiceTest extends BaseTest {
     @Autowired
     DocumentInputService documentInputService;
 

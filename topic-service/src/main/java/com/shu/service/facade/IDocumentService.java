@@ -1,6 +1,6 @@
 package com.shu.service.facade;
 
-import com.shu.dao.entity.Document;
+import com.shu.dao.entity.DocumentDO;
 
 /**
  * Description：文档操作的接口
@@ -13,5 +13,5 @@ public interface IDocumentService {
      * @param id
      * @return
      */
-    Document getDocumentById(int id);
+    DocumentDO getDocumentById(int id);
 }
