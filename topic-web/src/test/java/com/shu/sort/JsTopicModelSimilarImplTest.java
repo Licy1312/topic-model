@@ -19,5 +19,6 @@ public class JsTopicModelSimilarImplTest extends BaseTest {
     @Test
     public void testTopicDistribution(){
         double result[] =jsTopicModelSimilar.gainDocSimilarValue();
+        log.info("相似度计算结果:{}",result);
     }
 }

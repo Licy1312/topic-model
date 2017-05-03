@@ -66,12 +66,23 @@
     <!--配置基于注解的声明式事务，默认使用注解来管理事务的行为-->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
+    <!--文件的路径-->
     <bean id="filePathDealUtils" class="com.shu.analyzer.utils.FilePathDealUtils">
         <property name="resourcePath" value="${data.resource.path}"/>
         <property name="analyzedPath" value="${data.analyzed.path}"/>
         <property name="wordsPath" value="${data.words.path}"/>
         <property name="indexPath" value="${data.index.path}"/>
         <property name="modelPath" value="${data.topic.model}"/>
+    </bean>
+
+    <!--lda参数-->
+    <bean id="ldaParameterConfig" class="com.shu.lda.utils.LDAParameterConfigure">
+        <property name="topicK" value="${lda.topicK}"/>
+        <property name="alpha" value="${lda.alpha}"/>
+        <property name="beta" value="${lda.beta}"/>
+        <property name="iteration" value="${lda.iteration}"/>
+        <property name="saveIterationStep" value="${lda.saveIterationStep}"/>
+        <property name="topicWords" value="${lda.topicWords}"/>
     </bean>
 
 </beans>

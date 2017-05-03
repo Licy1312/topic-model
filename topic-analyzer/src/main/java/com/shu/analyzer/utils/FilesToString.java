@@ -23,6 +23,7 @@ public class FilesToString {
     public static String pdfToString(String path){
         String string = null;
         Tika tika = new Tika();
+        tika.setMaxStringLength(-1);
         try {
             string = tika.parseToString(new File(path));
         } catch (Exception e) {
