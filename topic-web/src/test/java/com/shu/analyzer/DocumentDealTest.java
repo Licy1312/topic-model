@@ -48,7 +48,7 @@ public class DocumentDealTest extends BaseTest {
      */
     @Test
     public  void indexSearchTest(){
-        List<IndexResult<String>> indexResultList = indexManager.searchIndex("知识产权");
+        List<IndexResult<String>> indexResultList = indexManager.searchIndex("发展外向型经济");
         log.info("检索结果一共有:{}条相关记录，分别为:{}",indexResultList.size(),indexResultList);
     }
 
