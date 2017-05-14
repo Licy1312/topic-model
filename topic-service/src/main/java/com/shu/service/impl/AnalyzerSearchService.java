@@ -2,7 +2,6 @@ package com.shu.service.impl;
 
 import com.shu.analyzer.Lucene;
 import com.shu.analyzer.service.IndexManager;
-import com.shu.analyzer.utils.IndexResult;
 import com.shu.service.facade.IAnalyzerSearchService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.lucene.queryparser.classic.ParseException;
@@ -45,7 +44,7 @@ public class AnalyzerSearchService implements IAnalyzerSearchService{
     @Override
     public List<String> searchIndex(String str) {
 
-        List<String> indexResultList = indexManager.searchIndex("发展外向型经济");
+        List<String> indexResultList = indexManager.searchIndex(str);
         return indexResultList;
     }
 

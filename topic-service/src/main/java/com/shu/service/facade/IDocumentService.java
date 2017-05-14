@@ -14,4 +14,10 @@ public interface IDocumentService {
      * @return
      */
     DocumentDO getDocumentById(int id);
+    /**
+     * 通过path获取文档
+     * @param path
+     * @return
+     */
+    DocumentDO getDocumentByPath(String path);
 }

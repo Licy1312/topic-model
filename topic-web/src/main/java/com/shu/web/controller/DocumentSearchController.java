@@ -1,5 +1,6 @@
 package com.shu.web.controller;
 
+import com.shu.analyzer.utils.IndexResult;
 import com.shu.dao.entity.DocumentDO;
 import com.shu.service.impl.AnalyzerSearchService;
 import com.shu.service.impl.DocumentService;
@@ -26,7 +27,8 @@ public class DocumentSearchController {
 
     @Autowired
     private AnalyzerSearchService analyzerSearchService;
-
+    @Autowired
+    private DocumentService documentService;
 
 
 
@@ -34,7 +36,7 @@ public class DocumentSearchController {
      * 获取查询结果
      * @return
      */
-    @RequestMapping(value = "/index/search/{str}")
+    @RequestMapping(value = "/index/search2/{str}")
     @ResponseBody
 //    public ListRes getSearch(@RequestParam("str") String str){
     public ListRes getSearch(@PathVariable("str") String str) throws IOException, ParseException {
@@ -75,20 +77,20 @@ public class DocumentSearchController {
      * 获取查询结果
      * @return
      */
-    @RequestMapping(value = "/index/search2/{str}")
+    @RequestMapping(value = "/index/search/{str}")
     @ResponseBody
     public ListRes gainSearch(@PathVariable("str") String str) throws IOException, ParseException {
         String key = new String(str.getBytes("ISO-8859-1"), "utf8");
         ArrayList<ResultDto> arrayList = new ArrayList<ResultDto>();
         ListRes listRes = new ListRes();
 
-        DocumentService documentService = new DocumentService();
-       List<String> list = analyzerSearchService.searchIndex(str);
+
+       List<String> list = analyzerSearchService.searchIndex(key);
 
         for(int i=0;i<list.size();i++){
             ResultDto<DocumentDO>  resultDto = new ResultDto<DocumentDO>();
-            DocumentDO documentDO = new DocumentDO();
-            documentDO.setTitle(list.get(i));
+            DocumentDO documentDO = documentService.getDocumentByPath(list.get(i));
+
             resultDto.setResult(documentDO);
             arrayList.add(resultDto);
         }

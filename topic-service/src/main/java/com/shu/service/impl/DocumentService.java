@@ -35,4 +35,14 @@ public class DocumentService implements IDocumentService {
          throw  new DocumentException(ExceptionEnum.DOCUMENT_NULL.getDesc());
         }
     }
+
+    @Override
+    public DocumentDO getDocumentByPath(String path){
+        DocumentDO documentDO = documentDao.getDocumentByPath(path);
+        if(documentDO != null){
+            return documentDO;
+        }else{
+            throw  new DocumentException(ExceptionEnum.DOCUMENT_NULL.getDesc());
+        }
+    }
 }

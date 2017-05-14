@@ -27,7 +27,8 @@ public class DocumentDODaoTest {
     @Test
     public void testGetDocumentById(){
         int id = 102;
-        DocumentDO documentDO = documentDao.getDocumentById(id);
+//        DocumentDO documentDO = documentDao.getDocumentById(id);
+        DocumentDO documentDO = documentDao.getDocumentByPath("20140701000340232.pdf");
         log.info("文档对象的内容是:{}", documentDO);
     }
 }

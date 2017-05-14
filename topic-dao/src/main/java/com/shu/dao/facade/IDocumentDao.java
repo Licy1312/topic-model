@@ -17,6 +17,12 @@ public interface IDocumentDao {
      * @return
      */
     DocumentDO getDocumentById(int id);
+    /**
+     * 通过path获取文档
+     * @param path
+     * @return
+     */
+    DocumentDO getDocumentByPath(String path);
 
     /**
      * 更新文档

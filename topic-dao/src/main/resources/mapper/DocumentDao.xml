@@ -27,6 +27,11 @@
           <include refid="documentColumn"/>
         FROM documentDO d WHERE d.d_id = #{id}
     </select>
+    <select id="getDocumentByPath" resultType="com.shu.dao.entity.DocumentDO">
+        SELECT
+        <include refid="documentColumn"/>
+        FROM documentDO d WHERE d.d_path = #{path}
+    </select>
     <select id="getContent" resultType="com.shu.dao.entity.DocumentDO">
         SELECT
         <include refid="documentColumn"/>
