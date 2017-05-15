@@ -12,6 +12,7 @@ import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apdplat.word.lucene.ChineseWordAnalyzer;
+import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import java.io.File;
 
@@ -50,6 +51,7 @@ public class DocumentDeal implements IDocumentDeal {
         log.info("分词开始时间:{}",startTime);
         for(File file:files.listFiles()){
             Analyzer analyzer = new ChineseWordAnalyzer("BidirectionalMaximumMatching");
+            Analyzer analyzer2 = new IKAnalyzer();
             TokenStream stream = analyzer.tokenStream("text", FilesToString.pdfToString(file.getAbsolutePath()));
             CharTermAttribute cta = stream.addAttribute(CharTermAttribute.class);
             try {
