@@ -117,3 +117,34 @@ body{
 .searchBox button{
     padding: 0 20px;
 }
+.recommendBox{
+    position: fixed;
+    right: 10px;
+    bottom: 100px;
+    background: #ffffff;
+    padding: 20px;
+    -webkit-box-shadow: 0 5px 10px #999;
+    -moz-box-shadow: 0 5px 10px #999;
+    box-shadow: 0 5px 10px #999;
+}
+.recommendBox h2{
+    text-align: center;
+}
+.recommendBox ul{
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #777;
+}
+.recommendBox ul li{
+    width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.recommendBox a{
+    color: #555;
+    text-align: right;
+    cursor: pointer;
+}
+.toggle{
+    padding-top: 10px;
+}

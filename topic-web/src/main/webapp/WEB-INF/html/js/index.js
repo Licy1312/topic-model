@@ -10,6 +10,8 @@ app.controller("mainCtrl",function($scope,$http){
 
     $scope.searchTime = 0; //搜索的次数统计,用于标记DOM节点以示区别
 
+    $scope.showRecommend = false;  //相关推荐的显示隐藏
+
     $http.get("../index")
         .then(function (response) {
             $scope.allData = response.data;
@@ -46,8 +48,6 @@ app.controller("mainCtrl",function($scope,$http){
         $scope.showList = false;
         $scope.thisId = $(e.target).data('newsid');
         $scope.targetNews = {};
-        console.log($scope.dataNow);
-        console.log($scope.thisId);
         for(var i=0;i<10;i++){
             if($scope.dataNow[i].result.id===$scope.thisId){
                 //console.log(i);
@@ -56,6 +56,11 @@ app.controller("mainCtrl",function($scope,$http){
                 $scope.targetNews.createTime = $scope.dataNow[i].result.createTime;   //显示时间
             };
         }
+        //获取推荐数据
+        $http.get('../main/'+$scope.thisId)
+            .then(function(res){
+                $scope.recommendData = res.data.resultDtos;
+            });
     };
     //返回列表
     $scope.backToList = function(){
@@ -75,7 +80,6 @@ app.controller("mainCtrl",function($scope,$http){
                 .then(function (response) {
                     $scope.allData = response.data;
                     $scope.dataNow = $scope.allData.resultDtos.slice(($scope.pageNow-1)*10, ($scope.pageNow-1)*10+10);
-                    console.log($scope.allData.count);
                     $("#searchBar"+$scope.searchTime).page({
                         showInfo: true,
                         showJump: true,
@@ -95,4 +99,28 @@ app.controller("mainCtrl",function($scope,$http){
                 });
         }
     }
+    //控制相关推荐的显示
+    $scope.toggleRecommend = function(){
+        $scope.showRecommend = !$scope.showRecommend;
+    };
+    //点击推荐获取详情
+    $scope.showRecommendDetails = function(e){
+        $scope.showList = false;
+        $scope.recommendId = $(e.target).data('newsid');
+        console.log('id:'+$scope.recommendId);
+        console.log($scope.recommendData);
+        for(i=0;i<$scope.recommendData.length;i++){
+            if($scope.recommendId == $scope.recommendData[i].result.id){
+                $scope.targetNews.title = $scope.recommendData[i].result.title;   //显示标题
+                $scope.targetNews.content = $scope.recommendData[i].result.content;   //显示内容
+                $scope.targetNews.createTime = $scope.recommendData[i].result.createTime;   //显示时间
+            }
+        }
+        //再次获取推荐数据
+        $http.get('../main/'+$scope.recommendId)
+            .then(function(res){
+                console.log(res);
+                $scope.recommendData = res.data.resultDtos;
+            });
+    };
 });

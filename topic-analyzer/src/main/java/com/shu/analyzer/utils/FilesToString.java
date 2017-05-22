@@ -2,8 +2,10 @@ package com.shu.analyzer.utils;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tika.Tika;
+import org.apache.tika.exception.TikaException;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Description： 文档处理工具类

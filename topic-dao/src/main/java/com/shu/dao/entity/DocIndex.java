@@ -40,4 +40,9 @@ public class DocIndex {
      */
     private Date createTime;
 
+    /**
+     * 对应主题概率
+     */
+    private String probability;
+
 }

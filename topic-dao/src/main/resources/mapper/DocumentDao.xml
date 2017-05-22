@@ -24,7 +24,7 @@
 
     <select id="getDocumentById" resultType="com.shu.dao.entity.DocumentDO">
         SELECT
-          <include refid="documentColumn"/>
+        <include refid="documentColumn"/>
         FROM documentDO d WHERE d.d_id = #{id}
     </select>
     <select id="getDocumentByPath" resultType="com.shu.dao.entity.DocumentDO">
@@ -35,7 +35,7 @@
     <select id="getContent" resultType="com.shu.dao.entity.DocumentDO">
         SELECT
         <include refid="documentColumn"/>
---         d.d_id
+        --         d.d_id
         FROM documentDO d
     </select>
     <insert id="inputDocument">
@@ -44,10 +44,10 @@
         VALUES (#{documentDO.content},#{documentDO.title},#{documentDO.type},#{documentDO.createTime},#{documentDO.hits})
     </insert>
     <!--<select id="getDocumentContent" resultMap="documentDO">-->
-        <!--SELECT-->
-        <!--d_id,hits FROM documentDO-->
+    <!--SELECT-->
+    <!--d_id,hits FROM documentDO-->
     <!--</select>-->
-    
+
     <update id="updateDocument">
         UPDATE documentDO SET
         <if test="documentDO.title !=null">

@@ -1,5 +1,7 @@
 package com.shu.service.facade;
 
+import com.shu.analyzer.utils.IndexResult;
+
 import java.util.ArrayList;
 import java.util.List;
 

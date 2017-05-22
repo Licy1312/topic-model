@@ -28,8 +28,8 @@ public class DoucmentServiceTest {
     @Test
     public void testGetDocument(){
         int id = 1;
-        DocumentDO documentDO = documentService.getDocumentByPath("20140701001133223.pdf");
-        log.info("文档的的详细:{}", documentDO);
+        DocumentDO document = documentService.getDocumentById(id);
+        log.info("文档的的详细:{}",document);
     }
 }
 

@@ -2,6 +2,7 @@ package com.shu.service.impl;
 
 import com.shu.analyzer.Lucene;
 import com.shu.analyzer.service.IndexManager;
+import com.shu.analyzer.utils.IndexResult;
 import com.shu.service.facade.IAnalyzerSearchService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.lucene.queryparser.classic.ParseException;

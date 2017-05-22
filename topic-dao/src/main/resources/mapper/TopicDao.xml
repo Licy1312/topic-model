@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shu.dao.facade.ITopicDao">
+    <resultMap id="topic" type="com.shu.dao.entity.Topic">
+        <id property="id" column="id"  />
+        <result property="name" column="topic_name" />
+        <result property="content" column="topic_content" />
+    </resultMap>
+
+    <insert id="insertTopic">
+        INSERT
+        INTO topic (topic_id,topic_name,topic_content)
+        VALUES (#{topic.id},#{topic.name},#{topic.content})
+    </insert>
+
+    <!--<select id="search" resultType="string">-->
+        <!--SELECT doc_analyzer-->
+        <!--FROM doc_index-->
+    <!--</select>-->
+</mapper>

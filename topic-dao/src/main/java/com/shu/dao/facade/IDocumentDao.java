@@ -6,10 +6,10 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
-        * Description：操作数据库中的Document的所有接口，方法
-        * User:Lichangya
-        * Date:2017/3/25.
-        */
+ * Description：操作数据库中的Document的所有接口，方法
+ * User:Lichangya
+ * Date:2017/3/25.
+ */
 public interface IDocumentDao {
     /**
      * 通过id获取文档
@@ -39,5 +39,5 @@ public interface IDocumentDao {
      * @return
      */
 
-     List<DocumentDO> getContent();
+    List<DocumentDO> getContent();
 }

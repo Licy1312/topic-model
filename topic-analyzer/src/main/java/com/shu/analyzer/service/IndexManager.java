@@ -20,8 +20,10 @@ import org.apdplat.word.lucene.ChineseWordAnalyzer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
@@ -62,7 +64,7 @@ public class IndexManager {
             File files = new File(filePathDealUtils.getResourcePath());
             for(File file:files.listFiles()){
                 Document doc = new Document();
-                doc.add(new Field("name",file.getName(), TextField.TYPE_STORED));
+                doc.add(new Field("name",file.getName(),TextField.TYPE_STORED));
                 doc.add(new Field("content", FilesToString.pdfToString(file.getAbsolutePath()), TextField.TYPE_STORED));
                 //写入索引
                 indexWriter.addDocument(doc);

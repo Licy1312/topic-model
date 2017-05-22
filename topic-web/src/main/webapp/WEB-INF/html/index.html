@@ -46,6 +46,18 @@
 					<pre>{{targetNews.content}}</pre>
 				</div>
 			</section>
+			<div class="recommendBox" ng-show="!showList" ng-if="showRecommend">
+				<h2>相关推荐</h2>
+				<ul>
+					<li ng-repeat="item in recommendData" ng-if="$index!=0"><a data-newsid="{{item.result.id}}" title="{{item.result.title}}" ng-click="showRecommendDetails($event)">{{item.result.title}}</a></li>
+				</ul>
+				<div class="toggle">
+					<a ng-click="toggleRecommend()">收起相关推荐>></a>
+				</div>
+			</div>
+			<div class="recommendBox" ng-show="!showList" ng-if="!showRecommend">
+				<a ng-click="toggleRecommend()">展开相关推荐</a>
+			</div>
 		</div>
 	</body>
 </html>

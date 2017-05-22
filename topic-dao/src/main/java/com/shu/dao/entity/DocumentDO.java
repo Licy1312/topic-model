@@ -7,7 +7,7 @@ import lombok.ToString;
 import java.util.Date;
 
 /**
- * Description: 文档实体类
+ * Description: 源文档实体类
  * User:Lichangya
  * Date:2017/3/25.
  */

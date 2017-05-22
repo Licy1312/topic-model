@@ -3,6 +3,9 @@ package com.shu.dao.facade;
 import com.shu.dao.entity.DocIndex;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Description：文档索引操作接口
  * User:Lichangya
@@ -11,4 +14,8 @@ import org.apache.ibatis.annotations.Param;
 public interface IDocIndexDao {
 
     void insertDocIndex(@Param("bean") DocIndex bean);
+
+    ArrayList<String> searchDocIndex();
+
+    void insertProbability(@Param("DocIndex")DocIndex docIndex);
 }

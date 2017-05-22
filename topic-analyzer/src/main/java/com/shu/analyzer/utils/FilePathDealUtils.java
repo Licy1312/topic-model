@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
+import javax.xml.ws.BindingType;
+
 /**
  * Description：文件路径配置
  * User:Lichangya

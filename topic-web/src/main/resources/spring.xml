@@ -17,7 +17,7 @@
     <!--<context:component-scan base-package="com.jinmu.service"/>-->
 
     <!--配置整合mybatis过程-->
-    <!--1.引入数据库相关参数的文件-->
+    <!--1.引入相关参数的文件-->
     <context:property-placeholder location="classpath:common.properties"/>
 
     <!--2.配置数据库连接池-->
@@ -73,6 +73,16 @@
         <property name="wordsPath" value="${data.words.path}"/>
         <property name="indexPath" value="${data.index.path}"/>
         <property name="modelPath" value="${data.topic.model}"/>
+    </bean>
+
+    <!--lda参数-->
+    <bean id="ldaParameterConfig" class="com.shu.lda.utils.LDAParameterConfigure">
+        <property name="topicK" value="${lda.topicK}"/>
+        <property name="alpha" value="${lda.alpha}"/>
+        <property name="beta" value="${lda.beta}"/>
+        <property name="iteration" value="${lda.iteration}"/>
+        <property name="saveIterationStep" value="${lda.saveIterationStep}"/>
+        <property name="topicWords" value="${lda.topicWords}"/>
     </bean>
 
 </beans>

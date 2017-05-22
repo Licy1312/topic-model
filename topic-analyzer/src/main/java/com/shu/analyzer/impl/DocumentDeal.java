@@ -6,14 +6,16 @@ import com.shu.dao.entity.DocIndex;
 import com.shu.dao.entity.DocumentDO;
 import com.shu.dao.facade.IDocIndexDao;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apdplat.word.lucene.ChineseWordAnalyzer;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+
 
 import java.io.File;
+
 import java.util.Date;
 import java.util.List;
 
@@ -49,6 +51,7 @@ public class DocumentDeal implements IDocumentDeal {
         log.info("分词开始时间:{}",startTime);
         for(File file:files.listFiles()){
             Analyzer analyzer = new ChineseWordAnalyzer("BidirectionalMaximumMatching");
+//            Analyzer analyzer2 = new IKAnalyzer();
             TokenStream stream = analyzer.tokenStream("text", FilesToString.pdfToString(file.getAbsolutePath()));
             CharTermAttribute cta = stream.addAttribute(CharTermAttribute.class);
             try {

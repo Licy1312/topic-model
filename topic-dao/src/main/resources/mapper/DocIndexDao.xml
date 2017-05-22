@@ -9,6 +9,7 @@
         <result property="docName" column="doc_name" />
         <result property="docAnalyzer" column="doc_analyzer" />
         <result property="createTime"  column="create_time" />
+        <result property="probability" column="probability"/>
     </resultMap>
 
     <insert id="insertDocIndex">
@@ -16,4 +17,15 @@
         INTO doc_index (id,doc_id,doc_name,doc_analyzer)
         VALUES (#{bean.id},#{bean.docId},#{bean.docName},#{bean.docAnalyzer})
     </insert>
+
+    <update id="insertProbability">
+        UPDATE doc_index SET
+        topic_probability = #{DocIndex.probability}
+        WHERE doc_name = #{DocIndex.docName}
+    </update>
+
+    <select id="searchDocIndex" resultType="string">
+        SELECT doc_analyzer
+        FROM doc_index
+    </select>
 </mapper>
